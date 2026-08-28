@@ -28,7 +28,7 @@ App.zip and Model.zip can be found on google drive of the project.
 
 1. Depending on your os, install Ollama as specified on the official website.
 
-2. Download and unzip Model.zip. Put the contents of the zip file in a folder.
+2. Download and unzip Model.zip. Put the contents of the zip file in a folder. Alternatively, you can replace with any other AI model as you wish.
 
 3. In the folder, right click and select "Open in Terminal".
 
