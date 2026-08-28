@@ -17,6 +17,7 @@ Supports json file downloading.
 
 - Model.zip (contains Model.gguf and Modelfile)
 
+App.zip and Model.zip can be found on google drive of the project.
 ## Installation for Windows/Mac
 
 ### Preparation
