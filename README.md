@@ -73,8 +73,8 @@ docker run -d --network (network_name) --name postgres jl456lj/snaildy_ai_iep:se
 # into the container, port-forwards port 8000 of the container to that of the host,
 # set environment variables
 # and registers container in custom Docker network.
-docker run -d -v /file_location:/code/data/ -p 8000:8000 --network (network_name) \
---env POSTGRES_SERVER=postgres --env MODEL_NAME=(modelname) \
+docker run -d -v /file_location:/code/data/ -p 8000:8000 --network (network_name) ^
+--env POSTGRES_SERVER=postgres --env MODEL_NAME=(modelname) ^
 --name backend jl456lj/snaildy_ai_iep:backend
 
 
