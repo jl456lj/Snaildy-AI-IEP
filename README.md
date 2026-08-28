@@ -1,6 +1,7 @@
 # Snaildy/AI-IEP
 
 Snaildy/AI-IEP is a python program used to generate Individual Education Plan (IEP) for schoolchildren with Special Education Needs (SEN).
+Supports json file downloading.
 
 ## Prerequisites
 
@@ -51,9 +52,6 @@ Put the Modelfile in the same directory as model_1.gguf, then right click in dir
 ```python
 # creates a custom network on Docker
 docker network create (network_name)
-
-# pulls RAG server and application code from docker hub
-docker pull -a jl456lj/snaildy_ai_iep
 ```
 
 5. Wait until Docker finishes pulling the images from the Docker Hub.
@@ -65,14 +63,19 @@ docker pull -a jl456lj/snaildy_ai_iep
 ```python
 #  creates Docker container for the postgres server image and registers container
 # in custom Docker network
-docker run -d --network (network_name) --name (server_name) jl456lj/snaildy_ai_iep:server
+docker run -d --network (network_name) --name postgres jl456lj/snaildy_ai_iep:server
 
-# creates Docker container for the AI-IEP app image, mounts contents of app.zip
-# into the container, links port 8000 of the container to that of the host,
+# creates Docker container for the application backend, mounts contents of app.zip
+# into the container, port-forwards port 8000 of the container to that of the host,
 # set environment variables
 # and registers container in custom Docker network.
 docker run -d -v /file_location:/code/data/ -p 8000:8000 --network (network_name) \
---env POSTGRES_SERVER=(server_name) --env MODEL_NAME=(modelname) \
---name AI-IEP jl456lj/snaildy_ai_iep:main
+--env POSTGRES_SERVER=postgres --env MODEL_NAME=(modelname) \
+--name backend jl456lj/snaildy_ai_iep:backend
+
+
+# creates Docker container for the application frontend, port-forwards port 8501 of container to that of host,
+# sets environment variables and registers container in custom Docker network.
+docker run -d -p 8501:8501 --env API_URL=backend --name frontend --network test jl456lj/snaildy_ai_iep:frontend
 ```
-8. Access the app by going to http://localhost:80/doc
+8. Access the app by going to http://localhost:8501
