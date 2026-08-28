@@ -7,6 +7,10 @@ Supports json file downloading.
 
 - Ollama
 
+- FastAPI (included in Docker image)
+
+- Streamlit (included in Docker image)
+
 - Docker
 
 - app.zip (contains SentenceTransformer and CrossEncoder)
@@ -79,3 +83,4 @@ docker run -d -v /file_location:/code/data/ -p 8000:8000 --network (network_name
 docker run -d -p 8501:8501 --env API_URL=backend --name frontend --network test jl456lj/snaildy_ai_iep:frontend
 ```
 8. Access the app by going to http://localhost:8501
+
